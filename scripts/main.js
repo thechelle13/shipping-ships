@@ -1,21 +1,22 @@
 import { getDocks, getHaulingShips, getShippingShips } from "./database.js";
-
-const mainContainer = document.querySelector("#container")
+import { ShippingShipList  } from "./shippingShips.js";
+import { HaulerList } from "./haulers.js";
+import { DockList } from "./dockList.js";
 
 const applicationHTML = `
-<h1>Shipping Ships</h1>
+<h1>Shipping Ship Tracker</h1>
 <article class="details">
     <section class="detail--column list details__cities">
-        <h2>Docks with Service</h2>
-        ${getDocks()}
+        <h2>Docks</h2>
+        ${DockList()}
     </section>
     <section class="detail--column list details__cities">
-        <h2>Cargo Haulers</h2>
-        ${getHaulingShips()}
+        <h2>Haulers</h2>
+        ${HaulerList()}
     </section>
     <section class="detail--column list details__cities">
-        <h2>Ships that Ship Ships</h2>
-        ${getShippingShips()}
+        <h2>Shipping Ships</h2>
+        ${ShippingShipList()}
     </section>
 </article>
 
@@ -24,5 +25,5 @@ const applicationHTML = `
     
 </article>
 `
-
+const mainContainer = document.querySelector("#container")
 mainContainer.innerHTML = applicationHTML
