@@ -4,7 +4,6 @@ document.addEventListener(
     "click",
     (clickEvent) => {
         const itemClicked = clickEvent.target
-
         /*
             Your job is to design an algorithm and implement it
         */

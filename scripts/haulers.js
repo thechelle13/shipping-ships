@@ -4,19 +4,12 @@ document.addEventListener(
     "click",
     (clickEvent) => {
         const itemClicked = clickEvent.target
-
         // Was a hauler list item clicked?
-
             // Get the id of the hauler clicked
-
             // Start a counter variable at 0
-
             // Iterate all of the shipping ships
-
                 // Does the haulerId foreign key match the id?
-
                     // Increase the counter by 1
-
     }
 )
 
