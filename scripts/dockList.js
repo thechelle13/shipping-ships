@@ -4,10 +4,11 @@ document.addEventListener(
     "click",
     (clickEvent) => {
         const itemClicked = clickEvent.target
+        if (itemClicked.dataset.type === "dock")
         /*
             Your job is to design an algorithm and implement it
         */
-            window.alert(`This dock is holding ${itemClicked.dataset.volume} ships.`)
+            window.alert(`This dock is holding ${itemClicked.dataset.dockname} ships.`)
     }
 )
 
