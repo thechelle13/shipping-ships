@@ -6,7 +6,9 @@ document.addEventListener(
     "click",
     (clickEvent) => {
         const itemClicked = clickEvent.target
+        if (itemClicked.dataset.type === "hauler") {
         window.alert(`This hauler is carrying ${itemClicked.dataset.volume} cargo.`)
+    }
     }
 )
 
