@@ -20,10 +20,7 @@ const applicationHTML = `
     </section>
 </article>
 
-<article class="assignments">
-    <h2>Current Assignments</h2>
-    
-</article>
+
 `
 const mainContainer = document.querySelector("#container")
 mainContainer.innerHTML = applicationHTML

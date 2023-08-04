@@ -3,7 +3,11 @@
 
 /*Typography
 --------------------------------------------------------------*/
-body,
+body {
+	background-color: rgb(85, 233, 233);
+}
+
+
 button,
 input,
 select,
