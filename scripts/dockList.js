@@ -2,44 +2,49 @@ import { getDocks, getHaulingShips } from "./database.js"
 
 const haulers = getHaulingShips()
 
+const docks = getDocks()
+
+// debugger 
 document.addEventListener(
     "click",
     (clickEvent) => {
+            
         const itemClicked = clickEvent.target
-        if (itemClicked.dataset.type === "dock") {
+                   
         const dockId = itemClicked.dataset.id
-        const dockLocation = itemClicked.dataset.location
-        let dockedShip = ""
-        for (const hauler of haulers) {
-            if(parseInt(dockId) === hauler.id){
-                dockedShip += `${hauler.name}`
-        }
-        if (dockedShip === "") {
-            window.alert(`${dockLocation} is unloading no boats.`)}
-            else {
-                const dockedShips = dockedShip.slice(0, dockedShip.length)
-                window.alert(`${dockLocation} is unloading ${dockedShips}`)
-            }
-        }
-        }
-        
-            //window.alert(`This dock is holding ${itemClicked.dataset.id} ships.`)
+
+            if (itemClicked.dataset.type === "dock") {
+                const hauler = getHaulingShips()
+                
+                for (const hauls of hauler) {
+                // debugger
+                let dockedShip = ""
+                    if(parseInt(dockId) === hauls.dockId){
+                    dockedShip += `${hauls.name}`
+                        if (dockedShip === "") {
+                        window.alert(`${dockId} is unloading no boats.`)
+                        }
+
+                        else {
+                        window.alert(`${dockId} is unloading ${dockedShip}`)
+                        }
+                    }
+                }
+            }          
     }
 )
 
 export const DockList = () => {
-    const docks = getDocks()
     let docksHTML = ""
     // debugger
     for (const dock of docks) {
         docksHTML += "<ul>"
-        docksHTML += `<li data-id="${dock.id}"
+        docksHTML += `<li 
                         data-type="dock"
-                        
+                        data-id="${dock.id}"
+                        data-name="${dock.location}"
                         >${dock.location} has a volume of ${dock.volume}.</li>`
         docksHTML += "</ul>"
     }
     return docksHTML
 }
-
-//   data-location="${dock.location}

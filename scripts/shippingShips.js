@@ -1,37 +1,41 @@
 import {getHaulingShips, getShippingShips } from "./database.js"
 
-//const shippingShips = getShippingShips()
-// debugger
+const ships = getShippingShips()
+
 document.addEventListener(
     "click",
     (clickEvent) => {
+        
         const itemClicked = clickEvent.target
+        const shippers = itemClicked.dataset.type
+        const haulers = getHaulingShips()
+        //if (itemClicked.dataset.type === "shippingShips") {
+            //debugger
+            for (const hauler of haulers) {
+                
+                if(hauler.id === parseInt(shippers)) {
 
-        if(itemClicked.dataset.type === "shippingShip") {
-//debugger
-            const shippingShipId = itemClicked.dataset.id
-            let shipCounter = 0
-            const haulers = getHaulingShips()
-                for (const hauler of haulers) {
-                    if (parseInt(shippingShipId) === hauler.id) {
-                    shipCounter++
+            
+                    window.alert(`${itemClicked.dataset.name} is being hauled by ${hauler.name}.`)
                 }
-            }
-            window.alert(`This Carrier is carrying ${shipCounter} shipping ships.`)
-        }
-    }
+            }  
+        }      
+      
 )
+
+
 // debugger
 export const ShippingShipList = () => {
-    const ships = getShippingShips()
     let shipsHTML = ""
     for (const ship of ships) {
         shipsHTML += "<ul>"
         shipsHTML += `<li 
-            data-id=${ship.id} 
-            data-type="shippingShip">
-                ${ship.name}</li>`
+            data-id="${ship.id}"
+            data-name="${ship.name}" 
+            data-type="${ship.haulerId}">
+            ${ship.name}</li>`
         shipsHTML += "</ul>"
     }
     return shipsHTML
 }
+
