@@ -1,41 +1,45 @@
 import {getHaulingShips, getShippingShips } from "./database.js"
 
 const ships = getShippingShips()
+const haulers = getHaulingShips()
 
 document.addEventListener(
     "click",
     (clickEvent) => {
-        
         const itemClicked = clickEvent.target
-        const shippers = itemClicked.dataset.type
-        const haulers = getHaulingShips()
-        //if (itemClicked.dataset.type === "shippingShips") {
-            //debugger
-            for (const hauler of haulers) {
-                
-                if(hauler.id === parseInt(shippers)) {
-
-            
-                    window.alert(`${itemClicked.dataset.name} is being hauled by ${hauler.name}.`)
-                }
-            }  
-        }      
-      
+        if (itemClicked.dataset.type === "shippingShips") {
+            window.alert(`${itemClicked.dataset.name} is being hauled by ${itemClicked.dataset.hauler}.`)
+        }
+    }  
 )
 
+const findHauler = (shipObject, haulerArray) => {
+    let theseHaulers = null
+    for (const hauler of haulerArray) {
+        // debugger
+        if(hauler.id === shipObject.haulerId) {
+            theseHaulers = hauler
+        }
+    }
+    return theseHaulers
+}
 
-// debugger
 export const ShippingShipList = () => {
     let shipsHTML = ""
+    
     for (const ship of ships) {
+     // debugger
+        const currentHaulers = findHauler(ship, haulers)
         shipsHTML += "<ul>"
         shipsHTML += `<li 
-            data-id="${ship.id}"
+            data-type="shippingShips"
+            data-hauler="${currentHaulers.name}"
             data-name="${ship.name}" 
-            data-type="${ship.haulerId}">
+            >
             ${ship.name}</li>`
-        shipsHTML += "</ul>"
-    }
+            shipsHTML += "</ul>"
+    
+    }   
     return shipsHTML
 }
 
